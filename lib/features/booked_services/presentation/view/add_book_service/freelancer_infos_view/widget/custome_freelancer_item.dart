@@ -18,11 +18,13 @@ class CustomeFreelancerItem extends StatelessWidget {
       onTap: () {
         Future.delayed(
           const Duration(microseconds: 250),
-          () => g.Get.to(
-            () => FreelancerInfosView(expert: expert),
-            transition: g.Transition.fadeIn,
-            duration: kDurationTransition,
-          ),
+          () {
+            g.Get.to(
+              () => FreelancerInfosView(expert: expert),
+              transition: g.Transition.fadeIn,
+              duration: kDurationTransition,
+            );
+          } ,
         );
       },
       child: Padding(

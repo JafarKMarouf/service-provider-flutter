@@ -3,7 +3,6 @@ import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/features/booked_services/data/models/book_services/book_datum.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/add_book_service/freelancer_infos_view/freelancer_infos_view.dart';
 import 'package:get/get.dart' as g;
-import 'package:intl/intl.dart' as intl;
 
 class CustomeBookServiceInfo extends StatelessWidget {
   final DatumBooked data;
@@ -11,7 +10,6 @@ class CustomeBookServiceInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var formatDate = intl.DateFormat('dd/MM/yyy').format(data.createdAt!);
     int rating = data.expert!.rating!;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -65,7 +63,7 @@ class CustomeBookServiceInfo extends StatelessWidget {
             ],
           ),
           Text(
-            'تاريخ الحجز :  $formatDate',
+            'تاريخ الحجز :  ${data.deliveryDate}',
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,

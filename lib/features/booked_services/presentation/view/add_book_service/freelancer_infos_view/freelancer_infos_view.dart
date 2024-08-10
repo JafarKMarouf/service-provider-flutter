@@ -29,75 +29,68 @@ class FreelancerInfosView extends StatelessWidget {
   Widget build(BuildContext context) {
     var bookService = BlocProvider.of<BookServiceCubit>(context);
 
-    int rating = 0;
-    if (freelanceInfos != null) {
-      rating = freelanceInfos!.rating!;
-    } else if (expert != null) {
-      rating = expert!.rating!;
-    } else {
-      rating = 0;
-    }
-    bookService.rating = rating;
-
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
         height: MediaQuery.sizeOf(context).height,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: CustomeServiceBar(
-                  title: '${freelanceInfos?.user!.name ?? expert?.user!.name}'),
+
+            const AspectRatio(aspectRatio: 17), CustomeServiceBar(
+              title: '${freelanceInfos?.user!.name ?? expert?.user!.name}',
             ),
+
             Expanded(
-              flex: 7,
               child: FreelancerInfos(
                 expert: expert,
                 freelanceInfos: freelanceInfos,
               ),
             ),
-            CustomButton(
-              title: 'تفدم',
-              width: MediaQuery.of(context).size.width,
-              onTap: () {
-                Future.delayed(
-                  const Duration(microseconds: 250),
-                  () {
-                    var location =
-                        '${bookService.currentPosition!.latitude},${bookService.currentPosition!.longitude}';
-                    DatumBooked booked = DatumBooked(
-                      expertId: bookService.expertId,
-                      customerId: bookService.customerId,
-                      serviceId: bookService.serviceId,
-                      deliveryDate: bookService.deliveryDate.toString(),
-                      deliveryTime: bookService.deliveryTime.toString(),
-                      service: Service(
-                        serviceName: bookService.serviceName,
-                        photo: bookService.photo,
-                      ),
-                      expert: books.Expert(
-                        user: User(
-                          name: bookService.expertName,
-                        ),
-                        rating: bookService.rating,
-                        mobile: bookService.mobile,
-                        price: bookService.price,
-                      ),
-                      // description: bookService.description!.text,
-                      // location: bookService.currentPosition.toString(),
-                      location: location,
-                    );
-                    g.Get.to(
-                      () => BookingConfirmationView(booked: booked),
-                      transition: g.Transition.fadeIn,
-                      duration: kDurationTransition,
-                    );
-                  },
-                );
-              },
-            ),
-            // const SizedBox(height: 14),
+           const Spacer(),
+
+            expert != null
+                ? CustomButton(
+                    title: 'تفدم',
+                    width: MediaQuery.of(context).size.width,
+                    onTap: () {
+                      Future.delayed(
+                        const Duration(microseconds: 250),
+                        () {
+                          var location =
+                              '${bookService.currentPosition!.latitude},${bookService.currentPosition!.longitude}';
+                          DatumBooked booked = DatumBooked(
+                            expertId: bookService.expertId,
+                            customerId: bookService.customerId,
+                            serviceId: bookService.serviceId,
+                            deliveryDate: bookService.deliveryDate.toString(),
+                            deliveryTime: bookService.deliveryTime.toString(),
+                            service: Service(
+                              serviceName: bookService.serviceName,
+                              photo: bookService.photo,
+                            ),
+                            expert: books.Expert(
+                              user: User(
+                                name: bookService.expertName,
+                              ),
+                              rating: bookService.rating,
+                              mobile: bookService.mobile,
+                              price: bookService.price,
+                            ),
+                            // description: bookService.description!.text,
+                            // location: bookService.currentPosition.toString(),
+                            location: location,
+                          );
+                          g.Get.to(
+                            () => BookingConfirmationView(booked: booked),
+                            transition: g.Transition.fadeIn,
+                            duration: kDurationTransition,
+                          );
+                        },
+                      );
+                    },
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

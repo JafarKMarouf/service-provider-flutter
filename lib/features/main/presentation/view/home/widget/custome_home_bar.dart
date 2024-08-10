@@ -91,19 +91,22 @@ class CustomeHomeBar extends StatelessWidget {
                         child: CachedNetworkImage(
                           fit: BoxFit.fill,
                           imageUrl: customerInfos!.photo!,
-                          placeholder: (context, url) => Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width / 2,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: kPrimaryColor,
+                          placeholder: (context, url) {
+                           return Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Container(
+                                width: MediaQuery.sizeOf(context).width / 2,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: kPrimaryColor,
+                                ),
                               ),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              Image.asset(AppImages.profile),
+                            );
+                          } ,
+                          errorWidget: (context, url, error) {
+                            return Image.asset(AppImages.profile);
+                          },
                         ),
                       ),
                     )

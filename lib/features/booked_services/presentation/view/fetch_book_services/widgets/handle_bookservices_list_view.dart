@@ -10,8 +10,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HandleBookServiceListView extends StatelessWidget {
-  final List<DatumBooked> booked;
-  const HandleBookServiceListView({super.key, required this.booked});
+  const HandleBookServiceListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +18,8 @@ class HandleBookServiceListView extends StatelessWidget {
       child: BlocBuilder<BookServiceCubit, BookServiceState>(
         builder: (context, state) {
           if (state is BookServiceSuccess) {
+            List<DatumBooked> booked = [];
+
             booked.addAll(state.bookService.data!.toList());
             return ListView.builder(
               padding: EdgeInsets.zero,

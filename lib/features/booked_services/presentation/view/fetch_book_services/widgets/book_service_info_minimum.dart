@@ -26,7 +26,7 @@ class BookServiceInfosMinimum extends StatelessWidget {
         margin: EdgeInsets.zero,
         elevation: 1,
         child: SizedBox(
-          width: MediaQuery.of(context).size.width - 44,
+          width: MediaQuery.of(context).size.width - 16,
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -85,9 +85,9 @@ class BookServiceInfosMinimum extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
                 const SizedBox(
-                    child: Divider(color: Colors.grey, thickness: 3)),
+                  child: Divider(color: Colors.grey, thickness: 3),
+                ),
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,77 +111,76 @@ class BookServiceInfosMinimum extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          '$formatDate',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          '$formatTime',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      '$formatDate',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          width: 120,
-                          child: Text(
-                            '${data.expert!.country}',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            textDirection: TextDirection.rtl,
-                          ),
+                    SizedBox(
+                      width: 120,
+                      child: Text(
+                        '${data.expert!.country}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '${data.expert!.price} ل.س',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Poppins Medium',
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff0ABA31),
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          textDirection: TextDirection.rtl,
+                        overflow: TextOverflow.ellipsis,
+                        textDirection: TextDirection.rtl,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(height: 12),
+                    Text(
+                      '$formatTime',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      '\$ ${data.expert!.price}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Poppins Medium',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff0ABA31),
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                        horizontal: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: kPrimaryColor,
+                          width: 3,
                         ),
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 4,
-                            horizontal: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: kPrimaryColor,
-                              width: 3,
-                            ),
-                          ),
-                          child: const Text(
-                            'في الموقع',
-                            style: TextStyle(
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                            ),
-                          ),
+                      ),
+                      child: Text(
+                        '${data.location}',
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
                         ),
-                      ],
+                      ),
                     ),
                   ],
                 ),

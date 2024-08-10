@@ -21,9 +21,8 @@ class HomeView extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height,
       child: Column(
         children: [
-          const AspectRatio(aspectRatio: 4, child: HandleUserDetails()),
+          const AspectRatio(aspectRatio: 3, child: HandleUserDetails()),
 
-          // const Expanded(flex: 2, child: HandleUserDetails()),
           CustomeSearch(width: MediaQuery.of(context).size.width),
 
           // ================== فئات الخدمات المتاحة =================
@@ -38,7 +37,7 @@ class HomeView extends StatelessWidget {
               );
             },
           ),
-          const HandleCategoriesUi(),
+          const Expanded(flex: 3, child: HandleCategoriesUi()),
 
           // ====================== الخدمات المحجوزة =================
 
@@ -53,7 +52,7 @@ class HomeView extends StatelessWidget {
               );
             },
           ),
-          const HandleBookServiceUi(),
+          const Expanded(flex: 3, child: HandleBookServiceUi()),
         ],
       ),
     );

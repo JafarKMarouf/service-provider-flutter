@@ -28,15 +28,18 @@ class FreelancerInfos extends StatelessWidget {
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+crossAxisAlignment: CrossAxisAlignment.end,
       children: [
+        const Spacer(),
+
         Center(
           child: CustomeFreelancerImage(
-            height: 120,
+            height: 90,
             image: '${freelanceInfos?.photo ?? expert?.photo}',
           ),
         ),
-        const Expanded(child: SizedBox()),
+        const Spacer(),
+
         Text(
           'الاسم :   ${freelanceInfos?.user!.name ?? expert?.user!.name}',
           style: const TextStyle(
@@ -54,21 +57,6 @@ class FreelancerInfos extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
 
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            RatingFreelancer(rating: rating, size: 24),
-            const Text(
-              'التقييم :   ',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-              textDirection: TextDirection.rtl,
-            ),
-          ],
         ),
         const SizedBox(height: 8),
         Text(
@@ -90,16 +78,21 @@ class FreelancerInfos extends StatelessWidget {
           textDirection: TextDirection.rtl,
         ),
         const SizedBox(height: 8),
-
-        Text(
-          'الوصف :   ${freelanceInfos?.description ?? expert?.description}',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-          textDirection: TextDirection.rtl,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            RatingFreelancer(rating: rating, size: 24),
+            const Text(
+              'التقييم :   ',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+              textDirection: TextDirection.rtl,
+            ),
+          ],
         ),
-        const Expanded(child: SizedBox()),
+
       ],
     );
   }

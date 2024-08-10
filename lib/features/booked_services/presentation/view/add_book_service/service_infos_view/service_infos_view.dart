@@ -6,17 +6,16 @@ import 'package:freelancer_app/features/main/data/models/service_model/service_d
 
 class ServiceInfosView extends StatelessWidget {
   final ServiceDatum data;
+
   const ServiceInfosView({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => PickBookServiceInfosCubit(),
-        ),
-      ],
-      child: Scaffold(body: BookServiceInit(data: data)),
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) => PickBookServiceInfosCubit(),
+        child: BookServiceInit(data: data),
+      ),
     );
   }
 }

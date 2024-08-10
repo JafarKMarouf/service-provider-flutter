@@ -35,55 +35,53 @@ class CustomeInfosServiceItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              date != null
-                  ? Expanded(
-                      child: CustomeInfosService(
-                        text: date!,
-                        image: AppImages.calender,
-                        onPressed: onPressedDate,
-                        tapped: dateTapped,
-                      ),
-                    )
-                  : Container(),
-              // const SizedBox(width: 4),
-              time != null
-                  ? Expanded(
-                      child: CustomeInfosService(
-                        text: time!,
-                        image: AppImages.time,
-                        onPressed: onPressedTime,
-                        tapped: timeTapped,
-                      ),
-                    )
-                  : Container(),
-            ],
-          ),
-          const SizedBox(height: 2),
-          phone != null
-              ? CustomeInfosService(
-                  text: phone!,
-                  image: AppImages.phone,
-                  tapped: phoneTapped,
-                )
-              : Container(),
-          const SizedBox(height: 2),
-          location != null
-              ? CustomeInfosService(
-                  image: AppImages.location,
-                  text: location!,
-                  tapped: locationTapped,
-                  onPressed: onPressedLocation,
-                )
-              : Container(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            date != null
+                ? Expanded(
+                    child: CustomeInfosService(
+                      text: date!,
+                      image: AppImages.calender,
+                      onPressed: onPressedDate,
+                      tapped: dateTapped,
+                    ),
+                  )
+                : Container(),
+            // const SizedBox(width: 4),
+            time != null
+                ? Expanded(
+                    child: CustomeInfosService(
+                      text: time!,
+                      image: AppImages.time,
+                      onPressed: onPressedTime,
+                      tapped: timeTapped,
+                    ),
+                  )
+                : Container(),
+          ],
+        ),
+        const SizedBox(height: 2),
+        phone != null
+            ? CustomeInfosService(
+                text: phone!,
+                image: AppImages.phone,
+                tapped: phoneTapped,
+              )
+            : Container(),
+        const SizedBox(height: 2),
+        location != null
+            ? CustomeInfosService(
+                image: AppImages.location,
+                text: location!,
+                tapped: locationTapped,
+                onPressed: onPressedLocation,
+              )
+            : Container(),
+      ],
     );
   }
 }

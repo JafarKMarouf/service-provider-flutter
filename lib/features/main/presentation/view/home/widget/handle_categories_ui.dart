@@ -13,52 +13,49 @@ class HandleCategoriesUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<CategoryDatum> categories = [];
-
     BlocProvider.of<CategoryCubit>(context).fetchCategories();
 
-    return Expanded(
-      flex: 3,
-      child: BlocBuilder<CategoryCubit, CategoryState>(
-        builder: (context, state) {
-          if (state is CategorySuccess) {
-            categories.addAll(state.category.data!.toList());
-            return CategoriesGridView(data: categories);
-          } else if (state is CategoryFailure) {
-            return SizedBox(
-              height: MediaQuery.of(context).size.height * .15,
-              child: Center(child: Text(state.errMessage)),
-            );
-          } else {
-            return SizedBox(
-              height: 135,
-              child: Shimmer.fromColors(
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.grey[100]!,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
-                  itemCount: 8,
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 80,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
+    return BlocBuilder<CategoryCubit, CategoryState>(
+      builder: (context, state) {
+        if (state is CategorySuccess) {
+          List<CategoryDatum> categories = [];
+
+          categories.addAll(state.category.data!.toList());
+          return CategoriesGridView(data: categories);
+        } else if (state is CategoryFailure) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * .15,
+            child: Center(child: Text(state.errMessage)),
+          );
+        } else {
+          return SizedBox(
+            height: 135,
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+                itemCount: 8,
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 80,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            );
-          }
-        },
-      ),
+            ),
+          );
+        }
+      },
     );
   }
 }
