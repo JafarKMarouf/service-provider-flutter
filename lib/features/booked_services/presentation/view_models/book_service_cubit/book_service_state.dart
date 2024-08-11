@@ -44,3 +44,15 @@ final class BookServicePickLocationLoading extends BookServiceState {}
 final class BookServicePickLocationUpdated extends BookServiceState {}
 
 final class BookServicePickLocationFailure extends BookServiceState {}
+
+final class BookServiceDeleteLoading extends BookServiceState {}
+
+final class BookServiceDeleteSuccess extends BookServiceState {
+  final Map<String, dynamic> successMessage;
+  const BookServiceDeleteSuccess({required this.successMessage});
+}
+
+final class BookServiceDeleteFailure extends BookServiceState {
+  final String errMessage;
+  const BookServiceDeleteFailure({required this.errMessage});
+}

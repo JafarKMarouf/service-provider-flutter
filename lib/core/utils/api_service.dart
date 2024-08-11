@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:freelancer_app/core/constants/app_storage.dart';
@@ -33,6 +35,17 @@ class ApiService {
     _dio.options.headers['Authorization'] = 'Bearer $token';
 
     var response = await _dio.post('$_baseUrl$endPoint', data: body);
+
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> delete({
+    required String endPoint,
+  }) async {
+    String? token = await AppStorage.getToken();
+    _dio.options.headers['Accept'] = 'application/json';
+    _dio.options.headers['Authorization'] = 'Bearer $token';
+    var response = await _dio.delete('$_baseUrl$endPoint');
 
     return response.data;
   }

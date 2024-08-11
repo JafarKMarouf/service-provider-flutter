@@ -106,21 +106,21 @@ class ApproveServiceInfo extends StatelessWidget {
         SizedBox(
           height: 24,
         ),
-        CustomeStyleServiceInfos(
-          title: ' حالة المكيف قبل الإصلاح : ',
-          image3: 'assets/images/img_rectangle_17_108x145.png',
-          image2: 'assets/images/img_rectangle_18.png',
-          image1: 'assets/images/img_rectangle_17.png',
-        ),
+        // CustomeStyleServiceInfos(
+        //   title: ' حالة المكيف قبل الإصلاح : ',
+        //   image3: 'assets/images/img_rectangle_17_108x145.png',
+        //   image2: 'assets/images/img_rectangle_18.png',
+        //   image1: 'assets/images/img_rectangle_17.png',
+        // ),
         SizedBox(
           height: 6,
         ),
-        CustomeStyleServiceInfos(
-          title: ' حالة المكيف بعد الإصلاح : ',
-          image3: 'assets/images/img_rectangle_17_108x145.png',
-          image2: 'assets/images/img_rectangle_18.png',
-          image1: 'assets/images/img_rectangle_17.png',
-        ),
+        // CustomeStyleServiceInfos(
+        //   title: ' حالة المكيف بعد الإصلاح : ',
+        //   image3: 'assets/images/img_rectangle_17_108x145.png',
+        //   image2: 'assets/images/img_rectangle_18.png',
+        //   image1: 'assets/images/img_rectangle_17.png',
+        // ),
       ],
     );
   }

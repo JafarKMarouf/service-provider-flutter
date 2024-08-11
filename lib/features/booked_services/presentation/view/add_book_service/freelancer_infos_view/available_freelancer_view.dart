@@ -26,11 +26,12 @@ class AvailableFreelancerView extends StatelessWidget {
             CustomeInfosServiceItems(
               date: book.deliveryDate,
               time: book.deliveryTime,
-              location: '${book.currentPosition!}',
+              location: book.currentAddress!,
               dateTapped: true,
               timeTapped: true,
               locationTapped: true,
             ),
+            const SizedBox(height: 16),
             const Text(
               'الفريلانسر المتاحين',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),

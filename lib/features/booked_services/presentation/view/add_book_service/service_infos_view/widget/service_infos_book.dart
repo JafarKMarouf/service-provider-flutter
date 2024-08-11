@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freelancer_app/core/widgets/custome_infos_service_items.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view_models/pick_book_service_infos_cubit/pick_book_service_infos_cubit.dart';
-import 'package:freelancer_app/features/main/data/models/service_model/service_datum.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../view_models/pick_book_service_infos_cubit/pick_book_service_infos_state.dart';
@@ -42,7 +41,8 @@ class ServiceInfosBook extends StatelessWidget {
                 loading = false;
               },
             ),
-            loading ? const CircularProgressIndicator() : Container(),
+            const SizedBox(height: 16),
+            loading ? const CircularProgressIndicator() : const SizedBox(),
           ],
         );
       },

@@ -14,5 +14,6 @@ abstract class BookServiceRepo {
 
   Future<Either<Failure, BookServices>> updateBookService({required int id});
 
-  Future<Either<Failure, BookServices>> deleteBookService({required int id});
+  Future<Either<Failure, Map<String, dynamic>>> deleteBookService(
+      {required int id});
 }

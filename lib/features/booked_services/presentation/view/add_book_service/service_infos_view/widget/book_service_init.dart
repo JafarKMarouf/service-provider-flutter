@@ -31,9 +31,9 @@ class BookServiceInit extends StatelessWidget {
       padding: const EdgeInsets.only(right: 8, left: 8, bottom: 15),
       child: Column(
         children: [
-          const Expanded(child: CustomeServiceBar(title: "وصف الخدمة")),
+          const AspectRatio(aspectRatio: 17),
+          const CustomeServiceBar(title: "وصف الخدمة"),
           Expanded(flex: 2, child: ServiceType(data: data)),
-          const SizedBox(height: 16),
           const Expanded(child: ServiceInfosBook()),
           Expanded(child: AdditionServiceInfoBook(data: data)),
           CustomButton(
@@ -62,7 +62,7 @@ class BookServiceInit extends StatelessWidget {
                     booked.deliveryDate = formatDate;
 
                     booked.deliveryTime = cubit.newTime!.format(context);
-                    booked.currentPosition = cubit.currentPosition;
+                    booked.currentAddress = cubit.currentAddress!;
 
                     return AvailableFreelancerView(expert: data.expert!);
                   },

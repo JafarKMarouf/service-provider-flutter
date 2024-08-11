@@ -33,6 +33,7 @@ class CustomeBookServiceInfo extends StatelessWidget {
               textDirection: TextDirection.rtl,
             ),
           ),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -62,6 +63,7 @@ class CustomeBookServiceInfo extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 8),
           Text(
             'تاريخ الحجز :  ${data.deliveryDate}',
             style: const TextStyle(
@@ -72,14 +74,15 @@ class CustomeBookServiceInfo extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'رسوم الخدمة :  \$ ${data.expert!.price} ',
+            'رسوم الخدمة :'
+            ' ${data.expert!.price} ل.س',
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
             textDirection: TextDirection.rtl,
           ),
-          // const SizedBox(height: 8),
+          const SizedBox(height: 8),
           data.description != null
               ? Text(
                   'الوصف :   ${data.description}',

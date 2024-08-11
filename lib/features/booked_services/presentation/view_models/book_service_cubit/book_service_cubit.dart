@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +20,7 @@ class BookServiceCubit extends Cubit<BookServiceState> {
   int? rating;
   String? deliveryTime;
   String? deliveryDate;
+  String? currentAddress;
   Position? currentPosition;
   TextEditingController? description;
 
@@ -42,9 +42,7 @@ class BookServiceCubit extends Cubit<BookServiceState> {
     );
   }
 
-  Future<void> addBookedServices({
-    required Map<String, dynamic> body,
-  }) async {
+  Future<void> addBookedServices({required Map<String, dynamic> body}) async {
     emit(BookServiceLoading());
 
     var result = await bookServiceRepoImpl.addBookService(body: body);
@@ -55,6 +53,19 @@ class BookServiceCubit extends Cubit<BookServiceState> {
       },
       (booked) {
         emit(BookServiceAddSuccess(bookService: booked));
+      },
+    );
+  }
+
+  Future<void> deleteBookService({required int id}) async {
+    emit(BookServiceDeleteLoading());
+    var result = await bookServiceRepoImpl.deleteBookService(id: id);
+    result.fold(
+      (fail) {
+        emit(BookServiceDeleteFailure(errMessage: fail.errMessage));
+      },
+      (booked) {
+        emit(BookServiceDeleteSuccess(successMessage: booked));
       },
     );
   }

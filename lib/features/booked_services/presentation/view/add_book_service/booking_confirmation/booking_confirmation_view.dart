@@ -5,6 +5,8 @@ import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/widgets/custome_button.dart';
 import 'package:freelancer_app/core/widgets/custome_nav_bar.dart';
 import 'package:freelancer_app/features/booked_services/data/models/book_services/book_datum.dart';
+import 'package:freelancer_app/features/booked_services/presentation/view/add_book_service/booking_confirmation/widget/add_notes_for_book.dart';
+import 'package:freelancer_app/features/booked_services/presentation/view/confirmed_booked_view.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/widgets/confirmed_booked.dart';
 import 'package:freelancer_app/core/widgets/custome_service_bar.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view_models/book_service_cubit/book_service_cubit.dart';
@@ -24,15 +26,19 @@ class BookingConfirmationView extends StatelessWidget {
       body: BlocConsumer<BookServiceCubit, BookServiceState>(
         listener: (context, state) {
           if (state is BookServiceFailure) {
+            loading = false;
+
             g.Get.snackbar('error', state.errMessage);
           } else if (state is BookServiceLoading) {
             loading = true;
           } else if (state is BookServiceAddSuccess) {
-            g.Get.offAll(
-              () => const CustomeNavBar(),
-              transition: g.Transition.fadeIn,
-              duration: kDurationTransition,
-            );
+            loading = false;
+            // g.Get.offAll(
+            //   () => const CustomeNavBar(),
+            //   transition: g.Transition.fadeIn,
+            //   duration: kDurationTransition,
+            // );
+            g.Get.to(() => const ConfirmedBookedView());
             g.Get.snackbar('success', 'Book services add successfully');
           }
         },
@@ -43,7 +49,7 @@ class BookingConfirmationView extends StatelessWidget {
             child: Column(
               children: [
                 const Expanded(child: CustomeServiceBar(title: "تأكيد الحجز")),
-                const Expanded(child: SizedBox()),
+                // const Expanded(child: SizedBox()),
                 Expanded(
                   flex: 7,
                   child: Column(
@@ -83,7 +89,7 @@ class BookingConfirmationView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      // const AddNotesBook(),
+                      const AddNotesBook(),
                     ],
                   ),
                 ),
@@ -97,14 +103,16 @@ class BookingConfirmationView extends StatelessWidget {
                       const Duration(microseconds: 250),
                       () {
                         BlocProvider.of<BookServiceCubit>(context)
-                            .addBookedServices(body: {
-                          'expert_id': booked!.expertId!,
-                          'service_id': booked!.serviceId!,
-                          'delivery_time': booked!.deliveryTime!,
-                          'delivery_date': booked!.deliveryDate!,
-                          'location': booked!.location!,
-                          'description': description ?? '',
-                        });
+                            .addBookedServices(
+                          body: {
+                            'expert_id': booked!.expertId!,
+                            'service_id': booked!.serviceId!,
+                            'delivery_time': booked!.deliveryTime!,
+                            'delivery_date': booked!.deliveryDate!,
+                            'location': booked!.location!,
+                            'description': description ?? '',
+                          },
+                        );
                       },
                     );
                   },

@@ -19,13 +19,9 @@ class StatusOrderBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             const CustomeServiceBar(title: 'حالة الطلب'),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             const ServiceInfos(),
-            const SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

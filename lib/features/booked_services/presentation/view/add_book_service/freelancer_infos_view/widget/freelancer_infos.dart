@@ -28,20 +28,19 @@ class FreelancerInfos extends StatelessWidget {
     }
 
     return Column(
-crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         const Spacer(),
-
         Center(
           child: CustomeFreelancerImage(
             height: 90,
             image: '${freelanceInfos?.photo ?? expert?.photo}',
           ),
         ),
-        const Spacer(),
-
+        const Expanded(child: SizedBox()),
         Text(
-          'الاسم :   ${freelanceInfos?.user!.name ?? expert?.user!.name}',
+          'الاسم :  '
+          '${freelanceInfos?.user!.name ?? expert?.user!.name}',
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -56,11 +55,22 @@ crossAxisAlignment: CrossAxisAlignment.end,
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
-
         ),
         const SizedBox(height: 8),
         Text(
-          'سعر الخدمة :  \$ ${freelanceInfos?.price ?? expert?.price}',
+          'المنطقة :   '
+          '${freelanceInfos?.country ?? expert?.country}',
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          textDirection: TextDirection.rtl,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'سعر الخدمة : '
+          '${freelanceInfos?.price ?? expert?.price} '
+          'ل.س',
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -70,7 +80,18 @@ crossAxisAlignment: CrossAxisAlignment.end,
         const SizedBox(height: 8),
         Text(
           'عدد ساعات العمل :   '
-          '${freelanceInfos?.workHours ?? expert?.workingHours} ',
+          '${freelanceInfos?.workHours ?? expert?.workingHours} '
+          'ساعة/ساعات',
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          textDirection: TextDirection.rtl,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'الوصف :   '
+          '${freelanceInfos?.description ?? expert?.description} ',
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -92,7 +113,6 @@ crossAxisAlignment: CrossAxisAlignment.end,
             ),
           ],
         ),
-
       ],
     );
   }

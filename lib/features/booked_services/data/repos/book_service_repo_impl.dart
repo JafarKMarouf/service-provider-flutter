@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freelancer_app/core/errors/failure.dart';
@@ -26,9 +25,8 @@ class BookServiceRepoImpl implements BookServiceRepo {
   }
 
   @override
-  Future<Either<Failure, DatumBooked>> addBookService({
-    required Map<String, dynamic> body,
-  }) async {
+  Future<Either<Failure, DatumBooked>> addBookService(
+      {required Map<String, dynamic> body}) async {
     try {
       var data = await apiService.post(
         endPoint: 'customer/service/${body['service_id']}/book_service',
@@ -44,8 +42,20 @@ class BookServiceRepoImpl implements BookServiceRepo {
   }
 
   @override
-  Future<Either<Failure, BookServices>> deleteBookService({required int id}) {
-    throw UnimplementedError();
+  Future<Either<Failure, Map<String, dynamic>>> deleteBookService({
+    required int id,
+  }) async {
+    try {
+      var data = await apiService.delete(
+        endPoint: 'customer/book_service/$id',
+      );
+      return right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
 
   @override
