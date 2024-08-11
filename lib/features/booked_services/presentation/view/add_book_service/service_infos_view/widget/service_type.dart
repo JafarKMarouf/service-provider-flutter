@@ -30,16 +30,18 @@ class ServiceType extends StatelessWidget {
                 ),
                 child: CachedNetworkImage(
                   imageUrl: '${data.photo}',
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
+                  placeholder: (context, url) {
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                   errorWidget: (context, url, error) => const Icon(
                     Icons.error,
                     color: Colors.white,

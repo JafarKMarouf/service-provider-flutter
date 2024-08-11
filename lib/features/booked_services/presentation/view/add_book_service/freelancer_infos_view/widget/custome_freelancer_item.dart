@@ -36,6 +36,7 @@ class CustomeFreelancerItem extends StatelessWidget {
               child: CustomeFreelancerImage(
                 image: '${expert.photo}',
                 height: 75,
+                width: 75,
               ),
             ),
             Column(

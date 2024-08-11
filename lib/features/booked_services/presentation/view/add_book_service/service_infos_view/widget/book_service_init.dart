@@ -31,9 +31,11 @@ class BookServiceInit extends StatelessWidget {
       padding: const EdgeInsets.only(right: 8, left: 8, bottom: 15),
       child: Column(
         children: [
-          const AspectRatio(aspectRatio: 17),
+          const AspectRatio(aspectRatio: 15),
           const CustomeServiceBar(title: "وصف الخدمة"),
+          const SizedBox(height: 24),
           Expanded(flex: 2, child: ServiceType(data: data)),
+          const SizedBox(height: 24),
           const Expanded(child: ServiceInfosBook()),
           Expanded(child: AdditionServiceInfoBook(data: data)),
           CustomButton(

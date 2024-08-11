@@ -64,6 +64,7 @@ class _ProfileSuccessViewState extends State<ProfileSuccessView> {
                 Center(
                   child: CustomeFreelancerImage(
                     height: 90,
+                    width: 90,
                     image: widget.customerInfo[0].photo,
                   ),
                 ),

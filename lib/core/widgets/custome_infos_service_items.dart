@@ -51,7 +51,6 @@ class CustomeInfosServiceItems extends StatelessWidget {
                     ),
                   )
                 : Container(),
-            // const SizedBox(width: 4),
             time != null
                 ? Expanded(
                     child: CustomeInfosService(

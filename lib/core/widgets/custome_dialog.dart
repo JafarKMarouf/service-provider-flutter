@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:freelancer_app/core/constants/app_images.dart';
 import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/widgets/custome_shadow.dart';
 import 'package:freelancer_app/core/widgets/custome_text.dart';
@@ -9,9 +8,10 @@ class CustomeDialog extends StatelessWidget {
   const CustomeDialog({
     super.key,
     required this.message,
+    required this.image,
   });
-  final dynamic message;
-
+  final String message;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class CustomeDialog extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  SvgPicture.asset(AppImages.sadsvg),
+                  SvgPicture.asset(image),
                   CustomeText(
                     text: message,
                     size: 18,

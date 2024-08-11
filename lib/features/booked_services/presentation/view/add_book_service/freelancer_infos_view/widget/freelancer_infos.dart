@@ -34,6 +34,7 @@ class FreelancerInfos extends StatelessWidget {
         Center(
           child: CustomeFreelancerImage(
             height: 90,
+            width: 90,
             image: '${freelanceInfos?.photo ?? expert?.photo}',
           ),
         ),

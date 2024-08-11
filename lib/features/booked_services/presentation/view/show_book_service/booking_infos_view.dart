@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freelancer_app/core/constants/app_images.dart';
 import 'package:freelancer_app/core/widgets/custome_button.dart';
 import 'package:freelancer_app/core/widgets/custome_dialog.dart';
 import 'package:freelancer_app/core/widgets/custome_nav_bar.dart';
 import 'package:freelancer_app/core/widgets/custome_service_bar.dart';
 import 'package:freelancer_app/core/widgets/custome_infos_service_items.dart';
 import 'package:freelancer_app/features/booked_services/data/models/book_services/book_datum.dart';
-import 'package:freelancer_app/features/booked_services/presentation/view/approve_service_view.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/show_book_service/widget/book_service_type.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view_models/book_service_cubit/book_service_cubit.dart';
 import 'package:get/get.dart';
@@ -27,7 +27,10 @@ class BookingInfosView extends StatelessWidget {
         if (state is BookServiceDeleteSuccess) {
           loading = false;
           Get.dialog(
-            const CustomeDialog(message: ' تم الحذف نتمنى أن تجد عرضا يناسبك'),
+            const CustomeDialog(
+              message: ' تم الحذف نتمنى أن تجد عرضا يناسبك',
+              image: AppImages.sadsvg,
+            ),
             barrierDismissible: false,
             barrierColor: const Color(0xffFFFDFD),
           );
@@ -43,6 +46,7 @@ class BookingInfosView extends StatelessWidget {
           Get.dialog(
             CustomeDialog(
               message: state.errMessage,
+              image: AppImages.sadsvg,
             ),
             barrierDismissible: false,
             barrierColor: const Color(0xffFFFDFD),

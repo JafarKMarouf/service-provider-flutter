@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/widgets/custome_infos_service_items.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view_models/pick_book_service_infos_cubit/pick_book_service_infos_cubit.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +17,7 @@ class ServiceInfosBook extends StatelessWidget {
     return BlocBuilder<PickBookServiceInfosCubit, PickBookServiceInfosState>(
       builder: (context, state) {
         return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             CustomeInfosServiceItems(
               date: cubit.newDate != null
@@ -41,8 +42,12 @@ class ServiceInfosBook extends StatelessWidget {
                 loading = false;
               },
             ),
-            const SizedBox(height: 16),
-            loading ? const CircularProgressIndicator() : const SizedBox(),
+            loading
+                ? const CircularProgressIndicator(
+                    color: Color(0xff0ABA31),
+                    backgroundColor: kPrimaryColor,
+                  )
+                : const SizedBox(),
           ],
         );
       },

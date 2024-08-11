@@ -5,12 +5,13 @@ import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomeFreelancerImage extends StatelessWidget {
-  final double height;
+  final double height, width;
   final String? image;
 
   const CustomeFreelancerImage({
     super.key,
     required this.height,
+    required this.width,
     required this.image,
   });
 
@@ -18,7 +19,7 @@ class CustomeFreelancerImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      width: 75,
+      width: width,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(240),
         child: image != null

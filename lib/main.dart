@@ -4,6 +4,7 @@ import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/utils/bloc_observer.dart';
 
 import 'package:freelancer_app/features/booked_services/data/repos/book_service_repo_impl.dart';
+import 'package:freelancer_app/features/payment/presentation/view/payment_view.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view_models/book_service_cubit/book_service_cubit.dart';
 import 'package:freelancer_app/features/main/data/repos/category_repo/category_repo_impl.dart';
 import 'package:freelancer_app/features/main/data/repos/service_repo/service_repo_impl.dart';
@@ -19,7 +20,6 @@ import 'package:dio/dio.dart';
 
 import 'features/profile/data/repos/profile_repo_impl.dart';
 import 'features/profile/presentation/view_models/profile_cubit/profile_cubit.dart';
-import 'features/splash/splash_view.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           primaryColorLight: kPrimaryColor,
           applyElevationOverlayColor: true,
         ),
-        home: const SplashView(),
+        home: const PaymentView(),
       ),
     );
   }

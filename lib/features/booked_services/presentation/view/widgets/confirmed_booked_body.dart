@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freelancer_app/core/widgets/custome_button.dart';
 import 'package:freelancer_app/core/widgets/custome_service_bar.dart';
-import 'package:freelancer_app/features/booked_services/presentation/view/widgets/confirmed_booked.dart';
 
 class ConfirmedBookedBody extends StatelessWidget {
   const ConfirmedBookedBody({super.key});
