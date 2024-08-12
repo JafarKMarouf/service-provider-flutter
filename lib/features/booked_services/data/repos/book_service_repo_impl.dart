@@ -36,7 +36,7 @@ class BookServiceRepoImpl implements BookServiceRepo {
       );
       return right(DatumBooked.addBooked(data));
     } catch (e) {
-      log('${e}');
+      log('$e');
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }

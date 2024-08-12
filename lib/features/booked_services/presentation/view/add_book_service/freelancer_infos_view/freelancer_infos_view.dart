@@ -64,8 +64,6 @@ class FreelancerInfosView extends StatelessWidget {
                       Future.delayed(
                         const Duration(microseconds: 250),
                         () {
-                          // var location =
-                          //     '${bookService.currentPosition!.latitude},${bookService.currentPosition!.longitude}';
                           DatumBooked booked = DatumBooked(
                             expertId: bookService.expertId,
                             customerId: bookService.customerId,

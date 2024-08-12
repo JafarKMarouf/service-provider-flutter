@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freelancer_app/core/constants/app_images.dart';
+import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/widgets/custome_dialog.dart';
 import 'package:freelancer_app/core/widgets/custome_nav_bar.dart';
 import 'package:freelancer_app/core/widgets/custome_service_bar.dart';
@@ -40,7 +41,7 @@ class PaymentBody extends StatelessWidget {
           loading = false;
           Get.dialog(
             const CustomeDialog(
-              message: 'تم الدفع بنجاح',
+              message: 'تم الدفع بنجاح بانتظار موافقة المستقل',
               image: AppImages.confirmsvg,
             ),
             barrierDismissible: false,
@@ -66,17 +67,65 @@ class PaymentBody extends StatelessWidget {
                 children: [
                   const AspectRatio(aspectRatio: 12),
                   const CustomeServiceBar(title: 'عملية الدفع'),
-                  const AspectRatio(aspectRatio: 12),
-                  CustomeText(
-                    text:
-                        'قم بدفع رسوم الخدمة التي قمت بحجزها إلى حساب التاجر الدفع اليدوي:'
-                        '${booked!.expert!.mobile}'
-                        ' ثم اكتب رقم عملية التحويل '
-                        '\n\n💡لا تُقبل عمليات تحويل الرصيد (وحدات)، سيرتيل كاش حصراً.',
-                    size: 16,
-                    weight: FontWeight.w800,
+                  const AspectRatio(aspectRatio: 17),
+                  const Text(
+                    'قم بدفع رسوم الخدمة التي قمت بحجزها إلى حساب التاجر الدفع اليدوي '
+                    'ثم اكتب رقم عملية التحويل ',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                    textDirection: TextDirection.rtl,
                   ),
-                  const AspectRatio(aspectRatio: 12),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${booked!.expert!.mobile}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        ': رقم التاجر',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${booked!.expert!.price} ل.س',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800,
+                          color: kPrimaryColor,
+                        ),
+                        textDirection: TextDirection.rtl,
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        ': رسوم الخدمة كاملةً',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    '💡لا تُقبل عمليات تحويل الرصيد (وحدات)، سيرتيل كاش حصراً.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                    textDirection: TextDirection.rtl,
+                  ),
+                  const AspectRatio(aspectRatio: 17),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * .8,
                     child: PaymentForm(

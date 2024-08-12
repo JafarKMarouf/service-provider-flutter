@@ -10,7 +10,10 @@ class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepoImpl paymentRepoImpl;
 
   TextEditingController amountController = TextEditingController();
+  TextEditingController amountConfirmController = TextEditingController();
   TextEditingController operationNumberController = TextEditingController();
+  TextEditingController operationNumberConfirmController =
+      TextEditingController();
 
   AutovalidateMode autoValidatePayment = AutovalidateMode.disabled;
   GlobalKey<FormState> formKeyPayment = GlobalKey();

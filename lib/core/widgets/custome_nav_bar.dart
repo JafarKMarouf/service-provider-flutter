@@ -15,7 +15,6 @@ class CustomeNavBar extends StatefulWidget {
 class _CustomeNavBarState extends State<CustomeNavBar> {
   List<Widget> screens = const [
     ProfileView(),
-    // BookmarkServicesView(),
     BookedServicesListView(),
     HomeView(),
   ];
@@ -39,28 +38,21 @@ class _CustomeNavBarState extends State<CustomeNavBar> {
           tabs: const [
             GButton(
               icon: Icons.person,
-              text: 'profile',
+              text: 'الملف الشخصي',
               iconSize: 32,
               iconActiveColor: Colors.white,
               textColor: Colors.white,
             ),
-            // GButton(
-            //   icon: Icons.bookmarks_outlined,
-            //   text: 'Bookmark',
-            //   iconSize: 32,
-            //   iconActiveColor: Colors.white,
-            //   textColor: Colors.white,
-            // ),
             GButton(
               icon: Icons.task_alt,
-              text: 'booked',
+              text: 'الخدمات المحجوزة',
               iconSize: 32,
               iconActiveColor: Colors.white,
               textColor: Colors.white,
             ),
             GButton(
               icon: Icons.home,
-              text: 'Home',
+              text: 'الرئيسية',
               iconSize: 32,
               iconActiveColor: Colors.white,
               textColor: Colors.white,

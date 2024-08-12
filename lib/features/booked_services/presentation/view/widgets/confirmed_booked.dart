@@ -39,7 +39,7 @@ class ConfirmedBooked extends StatelessWidget {
         const SizedBox(height: 8),
         CustomeStyleServiceInfos(
           title: ' رسوم الخدمة مكتملة : ',
-          info: '\$ ${booked.expert!.price}',
+          info: '${booked.expert!.price} ل.س',
         ),
         const SizedBox(height: 8),
         CustomeStyleServiceInfos(
