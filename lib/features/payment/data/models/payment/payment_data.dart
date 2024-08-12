@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class PaymentData extends Equatable {
-  final String? bookServiceId;
+  final int? bookServiceId;
   final int? paymentExpertId;
   final String? amount;
   final String? operationNumber;
@@ -22,7 +22,7 @@ class PaymentData extends Equatable {
   });
 
   factory PaymentData.fromMap(Map<String, dynamic> data) => PaymentData(
-        bookServiceId: data['book_service_id'] as String?,
+        bookServiceId: data['book_service_id'] as int?,
         paymentExpertId: data['payment_expert_id'] as int?,
         amount: data['amount'] as String?,
         operationNumber: data['operation_number'] as String?,

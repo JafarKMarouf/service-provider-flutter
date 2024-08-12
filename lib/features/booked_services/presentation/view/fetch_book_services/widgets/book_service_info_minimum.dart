@@ -36,13 +36,25 @@ class BookServiceInfosMinimum extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SvgPicture.asset(
-                      AppImages.bookmarksvg,
-                      height: 34,
-                      colorFilter: const ColorFilter.mode(
-                        kPrimaryColor,
-                        BlendMode.srcIn,
-                      ),
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          AppImages.payment,
+                          height: 34,
+                          colorFilter: const ColorFilter.mode(
+                            kPrimaryColor,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        data.status == 'process'
+                            ? const Icon(
+                                Icons.check_rounded,
+                                color: kPrimaryColor,
+                                size: 30,
+                              )
+                            : const SizedBox(),
+                      ],
                     ),
                     const Spacer(),
                     Column(

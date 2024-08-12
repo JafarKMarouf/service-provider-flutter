@@ -86,24 +86,14 @@ class BookingInfosView extends StatelessWidget {
                     ),
                   ),
                   Expanded(flex: 2, child: CustomeBookServiceInfo(data: data)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      CustomButton(
-                        title: 'حذف حجز الخدمة',
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        onTap: () async {
-                          await BlocProvider.of<BookServiceCubit>(context)
-                              .deleteBookService(id: data.id!);
-                        },
-                        color: Colors.red,
-                      ),
-                      CustomButton(
-                        title: 'تعديل الحجز',
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        onTap: () {},
-                      ),
-                    ],
+                  CustomButton(
+                    title: 'حذف حجز الخدمة',
+                    width: MediaQuery.of(context).size.width / 2,
+                    onTap: () async {
+                      await BlocProvider.of<BookServiceCubit>(context)
+                          .deleteBookService(id: data.id!);
+                    },
+                    color: Colors.red,
                   ),
                 ],
               ),

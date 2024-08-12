@@ -38,6 +38,21 @@ final class BookServiceAddFailure extends BookServiceState {
 }
 // ================================
 
+// ======= update status book service state =============
+final class BookServiceUpdateStatusLoading extends BookServiceState {}
+
+final class BookServiceUpdateStatusFailure extends BookServiceState {
+  final String errMessage;
+  const BookServiceUpdateStatusFailure({required this.errMessage});
+}
+
+final class BookServiceUpdateStatusSuccess extends BookServiceState {
+  final BookServices bookService;
+
+  const BookServiceUpdateStatusSuccess({required this.bookService});
+}
+// ================================
+
 // ======= delete book service state =============
 final class BookServiceDeleteLoading extends BookServiceState {}
 

@@ -57,6 +57,20 @@ class BookServiceCubit extends Cubit<BookServiceState> {
     );
   }
 
+  Future<void> updateStatusBooked({required int id}) async {
+    emit(BookServiceUpdateStatusLoading());
+
+    var result = await bookServiceRepoImpl.updateStatusBookService(id: id);
+    result.fold(
+      (fail) {
+        emit(BookServiceUpdateStatusFailure(errMessage: fail.errMessage));
+      },
+      (bookService) {
+        emit(BookServiceUpdateStatusSuccess(bookService: bookService));
+      },
+    );
+  }
+
   Future<void> deleteBookService({required int id}) async {
     emit(BookServiceDeleteLoading());
     var result = await bookServiceRepoImpl.deleteBookService(id: id);

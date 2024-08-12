@@ -8,8 +8,11 @@ part 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepoImpl paymentRepoImpl;
-  AutovalidateMode autoValidatePayment = AutovalidateMode.disabled;
 
+  TextEditingController amountController = TextEditingController();
+  TextEditingController operationNumberController = TextEditingController();
+
+  AutovalidateMode autoValidatePayment = AutovalidateMode.disabled;
   GlobalKey<FormState> formKeyPayment = GlobalKey();
 
   PaymentCubit(this.paymentRepoImpl) : super(PaymentInitial());

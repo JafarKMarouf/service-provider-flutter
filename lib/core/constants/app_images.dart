@@ -26,4 +26,6 @@ class AppImages {
   static const String notificationsvg = '$routeVector/notificationsvg.svg';
   static const String sadsvg = '$routeVector/sad.svg';
   static const String confirmsvg = '$routeVector/confirm_book.svg';
+  static const String payment = '$routeVector/payment.svg';
+  static const String checkMark = '$routeVector/check_mark.svg';
 }

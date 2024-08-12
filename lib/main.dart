@@ -4,13 +4,13 @@ import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/utils/bloc_observer.dart';
 
 import 'package:freelancer_app/features/booked_services/data/repos/book_service_repo_impl.dart';
-import 'package:freelancer_app/features/payment/presentation/view/payment_view.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view_models/book_service_cubit/book_service_cubit.dart';
 import 'package:freelancer_app/features/main/data/repos/category_repo/category_repo_impl.dart';
 import 'package:freelancer_app/features/main/data/repos/service_repo/service_repo_impl.dart';
 import 'package:freelancer_app/features/main/presentation/view_models/category_cubit/category_cubit.dart';
 
 import 'package:freelancer_app/features/main/presentation/view_models/service_cubit/service_cubit.dart';
+import 'package:freelancer_app/features/splash/splash_view.dart';
 
 import 'package:get/get.dart';
 import 'package:freelancer_app/core/utils/api_service.dart';
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           primaryColorLight: kPrimaryColor,
           applyElevationOverlayColor: true,
         ),
-        home: const PaymentView(),
+        home: const SplashView(),
       ),
     );
   }

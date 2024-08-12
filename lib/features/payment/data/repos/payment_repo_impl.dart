@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freelancer_app/core/errors/failure.dart';
@@ -7,7 +9,7 @@ import 'package:freelancer_app/features/payment/data/repos/payment_repo.dart';
 
 class PaymentRepoImpl implements PaymentRepo {
   ApiService apiService;
-  PaymentRepoImpl({required this.apiService});
+  PaymentRepoImpl(this.apiService);
 
   @override
   Future<Either<Failure, Payment>> addPayment({
@@ -20,6 +22,7 @@ class PaymentRepoImpl implements PaymentRepo {
       );
       return right(Payment.fromMap(data));
     } catch (e) {
+      log('=======$e===========');
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }

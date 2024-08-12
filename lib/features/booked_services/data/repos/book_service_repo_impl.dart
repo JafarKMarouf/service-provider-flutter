@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freelancer_app/core/errors/failure.dart';
@@ -34,6 +36,7 @@ class BookServiceRepoImpl implements BookServiceRepo {
       );
       return right(DatumBooked.addBooked(data));
     } catch (e) {
+      log('${e}');
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
@@ -66,9 +69,20 @@ class BookServiceRepoImpl implements BookServiceRepo {
   }
 
   @override
-  Future<Either<Failure, BookServices>> updateBookService({
+  Future<Either<Failure, BookServices>> updateStatusBookService({
     required int id,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    try {
+      var data = await apiService.put(
+        endPoint: 'customer/book_service/$id',
+        body: {'status': 'process'},
+      );
+      return right(BookServices.fromMap(data));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
 }
