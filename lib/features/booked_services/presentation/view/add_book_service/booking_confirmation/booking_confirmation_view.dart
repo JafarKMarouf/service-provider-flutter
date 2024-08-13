@@ -95,20 +95,21 @@ class BookingConfirmationView extends StatelessWidget {
   void addBookService(BuildContext context) {
     var description =
         BlocProvider.of<BookServiceCubit>(context).description?.text;
-    Future.delayed(
-      const Duration(microseconds: 250),
-      () {
-        BlocProvider.of<BookServiceCubit>(context).addBookedServices(
-          body: {
-            'expert_id': booked!.expertId!,
-            'service_id': booked!.serviceId!,
-            'delivery_time': booked!.deliveryTime!,
-            'delivery_date': booked!.deliveryDate!,
-            'location': booked!.location!,
-            'description': description ?? '',
-          },
-        );
+    BlocProvider.of<BookServiceCubit>(context).addBookedServices(
+      body: {
+        'expert_id': booked!.expertId!,
+        'service_id': booked!.serviceId!,
+        'delivery_time': booked!.deliveryTime!,
+        'delivery_date': booked!.deliveryDate!,
+        'location': booked!.location!,
+        'description': description ?? '',
       },
     );
+    // Future.delayed(
+    //   const Duration(microseconds: 250),
+    //   () {
+
+    //   },
+    // );
   }
 }

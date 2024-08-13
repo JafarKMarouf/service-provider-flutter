@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freelancer_app/core/functions/handle_location_permission.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'pick_book_service_infos_state.dart';
@@ -38,19 +36,23 @@ class PickBookServiceInfosCubit extends Cubit<PickBookServiceInfosState> {
   Future<void> pickLocation() async {
     emit(PickLocationLoading());
     currentPosition = await LocationHandler.getCurrentPosition();
-    await placemarkFromCoordinates(52.2165157, 6.9437819).then(
-      (placemarks) {
-        if (placemarks.isNotEmpty) {
-          currentAddress =
-              '${placemarks[0].street}, ${placemarks[0].postalCode}, ${placemarks[0].country}';
+    currentPosition == null
+        ? emit(PickLocationFailure())
+        : emit(PickLocationUpdated());
 
-          emit(PickLocationUpdated());
-        } else {
-          currentAddress = 'No results found.';
+    // await placemarkFromCoordinates(52, 6).then(
+    //   (placemarks) {
+    //     if (placemarks.isNotEmpty) {
+    //       currentAddress =
+    //           '${placemarks[0].street}, ${placemarks[0].postalCode}, ${placemarks[0].country}';
 
-          emit(PickLocationFailure());
-        }
-      },
-    );
+    //       emit(PickLocationUpdated());
+    //     } else {
+    //       currentAddress = 'No results found.';
+
+    //       emit(PickLocationFailure());
+    //     }
+    //   },
+    // );
   }
 }

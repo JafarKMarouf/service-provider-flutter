@@ -73,6 +73,10 @@ class PaymentForm extends StatelessWidget {
                   if (value.length < 12) {
                     return 'رقم عملية التحويل يجب أن تحتوي 12 رقم';
                   }
+                  if (value.length > 12) {
+                    return 'رقم عملية التحويل يجب أن لا تحتوي أكثر من 12 رقم';
+                  }
+
                   if (value != cubit.operationNumberConfirmController.text) {
                     return 'يجب أن يتطابق رقمي عملية التحويل';
                   }

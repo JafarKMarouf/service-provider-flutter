@@ -8,9 +8,9 @@ import 'package:freelancer_app/features/booked_services/presentation/view_models
 import 'package:freelancer_app/features/main/data/models/service_model/service_expert.dart';
 
 class AvailableFreelancerView extends StatelessWidget {
-  final List<ServiceExpert> expert;
-
   const AvailableFreelancerView({super.key, required this.expert});
+
+  final List<ServiceExpert> expert;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,8 @@ class AvailableFreelancerView extends StatelessWidget {
             CustomeInfosServiceItems(
               date: book.deliveryDate,
               time: book.deliveryTime,
-              location: book.currentAddress!,
+              location: book.currentPosition.toString(),
+              // location: book.currentAddress!,
               dateTapped: true,
               timeTapped: true,
               locationTapped: true,

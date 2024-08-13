@@ -83,8 +83,9 @@ class FreelancerInfosView extends StatelessWidget {
                               price: bookService.price,
                             ),
                             // description: bookService.description!.text,
-                            location: bookService.currentAddress,
-                            // location: location,
+                            // location: bookService.currentAddress,
+                            location:
+                                '${bookService.currentPosition!.longitude},${bookService.currentPosition!.latitude}',
                           );
                           g.Get.to(
                             () => BookingConfirmationView(booked: booked),

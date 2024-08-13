@@ -2,6 +2,17 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 abstract class LocationHandler {
+  static Future<Position?> getCurrentPosition() async {
+    try {
+      final hasPermission = await handleLocationPermission();
+      if (!hasPermission) return null;
+
+      return await Geolocator.getCurrentPosition();
+    } catch (e) {
+      return null;
+    }
+  }
+
   static Future<bool> handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -17,17 +28,6 @@ abstract class LocationHandler {
     if (permission == LocationPermission.deniedForever) return false;
 
     return true;
-  }
-
-  static Future<Position?> getCurrentPosition() async {
-    try {
-      final hasPermission = await handleLocationPermission();
-      if (!hasPermission) return null;
-
-      return await Geolocator.getCurrentPosition();
-    } catch (e) {
-      return null;
-    }
   }
 
   static Future<String> getAddressFromLatLng(Position position) async {

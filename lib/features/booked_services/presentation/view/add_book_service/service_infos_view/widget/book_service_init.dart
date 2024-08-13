@@ -65,8 +65,8 @@ class BookServiceInit extends StatelessWidget {
                     booked.deliveryDate = formatDate;
 
                     booked.deliveryTime = cubit.newTime!.format(context);
-                    booked.currentAddress = cubit.currentAddress!;
-
+                    // booked.currentAddress = cubit.currentAddress!;
+                    booked.currentPosition = cubit.currentPosition;
                     return AvailableFreelancerView(expert: data.expert!);
                   },
                   transition: g.Transition.fadeIn,
