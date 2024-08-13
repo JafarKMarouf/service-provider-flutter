@@ -22,11 +22,11 @@ class CategoriesListView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const AspectRatio(aspectRatio: 7),
+            const AspectRatio(aspectRatio: 12),
             const CustomeSearchArrowBackBar(),
             const SizedBox(height: 6),
             const Text(
-              'الخدمات',
+              'الخدمات المتاحة',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
             ),
             const SizedBox(height: 6),

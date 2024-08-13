@@ -2,27 +2,24 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-import 'payment_data.dart';
+import 'payment_datum.dart';
 
 class Payment extends Equatable {
   final String? status;
-  final PaymentData? data;
-  final String? message;
+  final List<PaymentDatum>? data;
 
-  const Payment({this.status, this.data, this.message});
+  const Payment({this.status, this.data});
 
   factory Payment.fromMap(Map<String, dynamic> data) => Payment(
         status: data['status'] as String?,
-        data: data['data'] == null
-            ? null
-            : PaymentData.fromMap(data['data'] as Map<String, dynamic>),
-        message: data['message'] as String?,
+        data: (data['data'] as List<dynamic>?)
+            ?.map((e) => PaymentDatum.fromMap(e as Map<String, dynamic>))
+            .toList(),
       );
 
   Map<String, dynamic> toMap() => {
         'status': status,
-        'data': data?.toMap(),
-        'message': message,
+        'data': data?.map((e) => e.toMap()).toList(),
       };
 
   /// `dart:convert`
@@ -38,5 +35,5 @@ class Payment extends Equatable {
   String toJson() => json.encode(toMap());
 
   @override
-  List<Object?> get props => [status, data, message];
+  List<Object?> get props => [status, data];
 }

@@ -4,7 +4,6 @@ import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/widgets/custome_button.dart';
 import 'package:freelancer_app/core/widgets/custome_text.dart';
 import 'package:freelancer_app/features/auth/presentation/view/widgets/custome_text_form_field.dart';
-import 'package:freelancer_app/features/booked_services/presentation/view_models/book_service_cubit/book_service_cubit.dart';
 import 'package:freelancer_app/features/payment/presentation/view_models/payment_cubit.dart';
 
 class PaymentForm extends StatelessWidget {
@@ -92,6 +91,9 @@ class PaymentForm extends StatelessWidget {
                   if (value.length < 12) {
                     return 'رقم عملية التحويل يجب أن تحتوي 12 رقم';
                   }
+                  if (value.length > 12) {
+                    return 'رقم عملية التحويل يجب أن لا تحتوي أكثر من 12 رقم';
+                  }
                   if (value != cubit.operationNumberController.text) {
                     return 'يجب أن يتطابق رقمي عملية التحويل';
                   }
@@ -124,8 +126,6 @@ class PaymentForm extends StatelessWidget {
           'operation_number': cubit.operationNumberController.text,
         },
       );
-      BlocProvider.of<BookServiceCubit>(context)
-          .updateStatusBooked(id: bookServiceId);
     } else {
       cubit.autoValidatePayment = AutovalidateMode.always;
     }

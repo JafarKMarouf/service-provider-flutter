@@ -38,7 +38,6 @@ class PickBookServiceInfosCubit extends Cubit<PickBookServiceInfosState> {
   Future<void> pickLocation() async {
     emit(PickLocationLoading());
     currentPosition = await LocationHandler.getCurrentPosition();
-
     await placemarkFromCoordinates(52.2165157, 6.9437819).then(
       (placemarks) {
         if (placemarks.isNotEmpty) {

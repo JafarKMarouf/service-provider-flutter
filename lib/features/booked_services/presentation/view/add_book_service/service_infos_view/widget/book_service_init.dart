@@ -6,11 +6,12 @@ import 'package:freelancer_app/features/booked_services/presentation/view_models
 import 'package:freelancer_app/features/booked_services/presentation/view_models/pick_book_service_infos_cubit/pick_book_service_infos_cubit.dart';
 import 'package:freelancer_app/features/main/data/models/service_model/service_datum.dart';
 import 'package:freelancer_app/features/profile/presentation/view_models/profile_cubit/profile_cubit.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as g;
 import 'package:freelancer_app/core/widgets/custome_service_bar.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/add_book_service/service_infos_view/widget/service_infos_book.dart';
 import 'package:freelancer_app/core/widgets/custome_button.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/add_book_service/freelancer_infos_view/available_freelancer_view.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:intl/intl.dart' as intl;
 
 class BookServiceInit extends StatelessWidget {
@@ -42,22 +43,22 @@ class BookServiceInit extends StatelessWidget {
             title: 'تقدم',
             onTap: () {
               if (cubit.newDate == null) {
-                Get.snackbar(
+                g.Get.snackbar(
                   'warning',
                   'you have to set date first',
                 );
               } else if (cubit.newTime == null) {
-                Get.snackbar(
+                g.Get.snackbar(
                   'warning',
                   'you have to set time first',
                 );
               } else if (cubit.currentPosition == null) {
-                Get.snackbar(
+                g.Get.snackbar(
                   'warning',
                   'you have to set your location first',
                 );
               } else {
-                Get.to(
+                g.Get.to(
                   () {
                     var formatDate =
                         intl.DateFormat('dd/MM/yyy').format(cubit.newDate!);
@@ -68,6 +69,7 @@ class BookServiceInit extends StatelessWidget {
 
                     return AvailableFreelancerView(expert: data.expert!);
                   },
+                  transition: g.Transition.fadeIn,
                 );
               }
             },

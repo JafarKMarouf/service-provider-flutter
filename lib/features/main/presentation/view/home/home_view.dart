@@ -37,7 +37,10 @@ class HomeView extends StatelessWidget {
               );
             },
           ),
-          const Expanded(flex: 4, child: HandleCategoriesUi()),
+          const Expanded(
+            flex: 3,
+            child: HandleCategoriesUi(),
+          ),
 
           // ====================== الخدمات المحجوزة =================
 
@@ -52,7 +55,8 @@ class HomeView extends StatelessWidget {
               );
             },
           ),
-          const Expanded(flex: 4, child: HandleBookServiceUi()),
+          const Expanded(flex: 3, child: HandleBookServiceUi())
+          // const Expanded( child: HandleBookServiceUi()),
         ],
       ),
     );

@@ -23,6 +23,8 @@ class ApiService {
     String uri = id == null ? '$_baseUrl$endPoint' : '$_baseUrl$endPoint$id';
 
     var response = await _dio.get(uri);
+    log('=======${response.data}===========');
+
     return response.data;
   }
 
@@ -35,6 +37,8 @@ class ApiService {
     _dio.options.headers['Authorization'] = 'Bearer $token';
 
     var response = await _dio.post('$_baseUrl$endPoint', data: body);
+    log('=====result ${response.data}=========');
+
     return response.data;
   }
 

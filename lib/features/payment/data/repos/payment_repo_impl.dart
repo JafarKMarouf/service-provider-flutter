@@ -32,12 +32,20 @@ class PaymentRepoImpl implements PaymentRepo {
   }
 
   @override
-  Future<Either<Failure, Payment>> fetchAllPayments() {
-    throw UnimplementedError();
-  }
+  Future<Either<Failure, Payment>> fetchAllPayments() async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'customer/payment',
+      );
+      // log('========data$data==========');
+      return right(Payment.fromMap(data));
+    } catch (e) {
+      log('=======$e===========');
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
 
-  @override
-  Future<Either<Failure, Payment>> updatePayment({required int id}) {
-    throw UnimplementedError();
+      return left(ServerFailure(e.toString()));
+    }
   }
 }

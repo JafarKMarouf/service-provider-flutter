@@ -86,16 +86,16 @@ class CustomeBookServiceInfo extends StatelessWidget {
             textDirection: TextDirection.rtl,
           ),
           const SizedBox(height: 8),
-          data.description != null
-              ? Text(
-                  'الوصف :   ${data.description}',
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textDirection: TextDirection.rtl,
-                )
-              : const SizedBox(),
+          // data.description != null
+          //     ? Text(
+          //         'الوصف :   ${data.description}',
+          //         style: const TextStyle(
+          //           fontSize: 15,
+          //           fontWeight: FontWeight.w600,
+          //         ),
+          //         textDirection: TextDirection.rtl,
+          //       )
+          //     : const SizedBox(),
           const SizedBox(height: 8),
           data.description != null
               ? Text(

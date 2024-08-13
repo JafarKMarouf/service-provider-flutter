@@ -3,6 +3,7 @@ import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/fetch_book_services/booked_services_list_view.dart';
 import 'package:freelancer_app/features/main/presentation/view/home/home_view.dart';
 import 'package:freelancer_app/features/profile/presentation/view/profile_view.dart';
+import 'package:freelancer_app/features/payment/presentation/view/payment_log.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class CustomeNavBar extends StatefulWidget {
@@ -15,11 +16,12 @@ class CustomeNavBar extends StatefulWidget {
 class _CustomeNavBarState extends State<CustomeNavBar> {
   List<Widget> screens = const [
     ProfileView(),
+    PaymentLog(),
     BookedServicesListView(),
     HomeView(),
   ];
 
-  int currentIndex = 2;
+  int currentIndex = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,13 @@ class _CustomeNavBarState extends State<CustomeNavBar> {
             GButton(
               icon: Icons.person,
               text: 'الملف الشخصي',
+              iconSize: 32,
+              iconActiveColor: Colors.white,
+              textColor: Colors.white,
+            ),
+            GButton(
+              icon: Icons.payment_outlined,
+              text: 'السجل',
               iconSize: 32,
               iconActiveColor: Colors.white,
               textColor: Colors.white,

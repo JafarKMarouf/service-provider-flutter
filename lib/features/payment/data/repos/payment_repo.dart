@@ -8,8 +8,4 @@ abstract class PaymentRepo {
   Future<Either<Failure, Payment>> addPayment({
     required Map<String, dynamic> body,
   });
-
-  // Future<Either<Failure, Payments>> showOnePayment({required int id});
-
-  Future<Either<Failure, Payment>> updatePayment({required int id});
 }

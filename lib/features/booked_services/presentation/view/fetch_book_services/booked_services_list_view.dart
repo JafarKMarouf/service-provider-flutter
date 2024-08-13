@@ -18,7 +18,7 @@ class BookedServicesListView extends StatelessWidget {
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            AspectRatio(aspectRatio: 7),
+            AspectRatio(aspectRatio: 12),
             CustomeSearchArrowBackBar(),
             SizedBox(height: 6),
             Text(
