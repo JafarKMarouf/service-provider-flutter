@@ -20,24 +20,36 @@ class HandleBookServiceUi extends StatelessWidget {
           List<DatumBooked> booked = [];
 
           booked.addAll(state.bookService.data!.toList());
-          return SizedBox(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: booked.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    g.Get.to(
-                      () => BookingInfosView(data: booked[index]),
-                      transition: g.Transition.fadeIn,
-                      duration: kDurationTransition,
-                    );
-                  },
-                  child: BookServiceInfosMinimum(data: booked[index]),
+          return booked.isNotEmpty
+              ? SizedBox(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: booked.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          g.Get.to(
+                            () => BookingInfosView(data: booked[index]),
+                            transition: g.Transition.fadeIn,
+                            duration: kDurationTransition,
+                          );
+                        },
+                        child: BookServiceInfosMinimum(data: booked[index]),
+                      );
+                    },
+                  ),
+                )
+              : Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .11,
+                  ),
+                  child: const Text(
+                    'Not Found Book Services For you yet !',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
                 );
-              },
-            ),
-          );
         } else if (state is BookServiceFailure) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * .15,
@@ -68,68 +80,6 @@ class HandleBookServiceUi extends StatelessWidget {
           );
         }
       },
-    );
-  }
-}
-
-class HandleBookServiceBody extends StatelessWidget {
-  const HandleBookServiceBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    List<DatumBooked> booked = [];
-    BlocProvider.of<BookServiceCubit>(context).fetchBookServices();
-
-    return Expanded(
-      flex: 4,
-      child: BlocBuilder<BookServiceCubit, BookServiceState>(
-        builder: (context, state) {
-          if (state is BookServiceSuccess) {
-            booked.addAll(state.bookService.data!.toList());
-            return SizedBox(
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: booked.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => g.Get.to(
-                        () => BookingInfosView(data: booked[index]),
-                        transition: g.Transition.fadeIn,
-                        duration: kDurationTransition,
-                      ),
-                      child: BookServiceInfosMinimum(data: booked[index]),
-                    );
-                  }),
-            );
-          } else if (state is BookServiceFailure) {
-            return SizedBox(
-              height: MediaQuery.of(context).size.height * .15,
-              child: Center(child: Text(state.errMessage)),
-            );
-          } else {
-            return Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) => Card(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    margin: const EdgeInsets.only(right: 22),
-                    // height: 40,
-                    width: MediaQuery.sizeOf(context).width * .8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14),
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
-              ),
-            );
-          }
-        },
-      ),
     );
   }
 }

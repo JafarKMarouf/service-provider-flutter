@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:freelancer_app/core/constants/app_images.dart';
 import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/features/booked_services/data/models/book_services/book_datum.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/add_book_service/freelancer_infos_view/freelancer_infos_view.dart';
+import 'package:freelancer_app/features/payment/presentation/view/payment_view.dart';
 import 'package:get/get.dart' as g;
 
 class CustomeBookServiceInfo extends StatelessWidget {
@@ -33,6 +36,7 @@ class CustomeBookServiceInfo extends StatelessWidget {
               textDirection: TextDirection.rtl,
             ),
           ),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -62,6 +66,7 @@ class CustomeBookServiceInfo extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 8),
           Text(
             'تاريخ الحجز :  ${data.deliveryDate}',
             style: const TextStyle(
@@ -72,14 +77,26 @@ class CustomeBookServiceInfo extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'رسوم الخدمة :  \$ ${data.expert!.price} ',
+            'رسوم الخدمة :'
+            ' ${data.expert!.price} ل.س',
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
             textDirection: TextDirection.rtl,
           ),
-          // const SizedBox(height: 8),
+          const SizedBox(height: 8),
+          // data.description != null
+          //     ? Text(
+          //         'الوصف :   ${data.description}',
+          //         style: const TextStyle(
+          //           fontSize: 15,
+          //           fontWeight: FontWeight.w600,
+          //         ),
+          //         textDirection: TextDirection.rtl,
+          //       )
+          //     : const SizedBox(),
+          const SizedBox(height: 8),
           data.description != null
               ? Text(
                   'الوصف :   ${data.description}',
@@ -88,6 +105,40 @@ class CustomeBookServiceInfo extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                   textDirection: TextDirection.rtl,
+                )
+              : const SizedBox(),
+          data.status != 'process'
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        g.Get.to(
+                          () => PaymentView(booked: data),
+                        );
+                      },
+                      child: SvgPicture.asset(
+                        AppImages.payment,
+                        height: 34,
+                        colorFilter: const ColorFilter.mode(
+                          kPrimaryColor,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width / 4,
+                    ),
+                    const Text(
+                      'هذه الخدمة بحاجة إالى دفع الرسوم',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ],
                 )
               : const SizedBox(),
         ],

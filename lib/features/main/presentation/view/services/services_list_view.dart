@@ -27,7 +27,8 @@ class ServicesListView extends StatelessWidget {
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3),
+                      crossAxisCount: 3,
+                    ),
                     itemCount: 15,
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {

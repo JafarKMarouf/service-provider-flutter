@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freelancer_app/core/errors/failure.dart';
@@ -34,10 +32,7 @@ class ProfileRepoImpl implements ProfileRepo {
       );
       return right(ProfileModel.fromMap(user));
     } catch (e) {
-      log('++++error $e');
       if (e is DioException) {
-        log('++++excption ${e.response}');
-
         return left(ServerFailure.fromDioError(e));
       }
 

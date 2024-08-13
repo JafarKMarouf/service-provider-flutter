@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freelancer_app/core/constants/app_images.dart';
 import 'package:freelancer_app/core/widgets/custome_button.dart';
+import 'package:freelancer_app/core/widgets/custome_dialog.dart';
+import 'package:freelancer_app/core/widgets/custome_nav_bar.dart';
 import 'package:freelancer_app/core/widgets/custome_service_bar.dart';
 import 'package:freelancer_app/core/widgets/custome_infos_service_items.dart';
 import 'package:freelancer_app/features/booked_services/data/models/book_services/book_datum.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view/show_book_service/widget/book_service_type.dart';
-import 'package:freelancer_app/features/booked_services/presentation/view/update_book_service/update_book_service_view.dart';
+import 'package:freelancer_app/features/booked_services/presentation/view_models/book_service_cubit/book_service_cubit.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'widget/custome_book_service_infos.dart';
 
 class BookingInfosView extends StatelessWidget {
@@ -16,48 +21,86 @@ class BookingInfosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var formatTime = data.deliveryTime!;
-
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(right: 8, left: 8, bottom: 15),
-        height: MediaQuery.sizeOf(context).height,
-        child: Column(
-          children: [
-            const AspectRatio(aspectRatio: 17),
-            const CustomeServiceBar(title: "معلومات الحجز"),
-            Expanded(flex: 2, child: BookServiceType(data: data)),
-            const SizedBox(height: 16),
-            Expanded(
-              child: CustomeInfosServiceItems(
-                location: data.location,
-                phone: data.expert!.mobile,
-                time: formatTime,
-                timeTapped: true,
-                locationTapped: true,
-                phoneTapped: true,
+    var loading = false;
+    return BlocConsumer<BookServiceCubit, BookServiceState>(
+      listener: (context, state) {
+        if (state is BookServiceDeleteSuccess) {
+          loading = false;
+          Get.dialog(
+            const CustomeDialog(
+              message: ' تم الحذف نتمنى أن تجد عرضا يناسبك',
+              image: AppImages.sadsvg,
+            ),
+            barrierDismissible: false,
+            barrierColor: const Color(0xffFFFDFD),
+          );
+          Future.delayed(
+            const Duration(seconds: 3),
+            () {
+              Get.back();
+              Get.offAll(() => const CustomeNavBar());
+            },
+          );
+        } else if (state is BookServiceDeleteFailure) {
+          loading = false;
+          Get.dialog(
+            CustomeDialog(
+              message: state.errMessage,
+              image: AppImages.sadsvg,
+            ),
+            barrierDismissible: false,
+            barrierColor: const Color(0xffFFFDFD),
+          );
+          Future.delayed(
+            const Duration(seconds: 2),
+            () {
+              Get.back();
+              Get.offAll(() => const CustomeNavBar());
+            },
+          );
+        } else {
+          loading = true;
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: ModalProgressHUD(
+            inAsyncCall: loading,
+            child: Container(
+              padding: const EdgeInsets.only(right: 8, left: 8, bottom: 15),
+              height: MediaQuery.sizeOf(context).height,
+              child: Column(
+                children: [
+                  const AspectRatio(aspectRatio: 17),
+                  const CustomeServiceBar(title: "معلومات الحجز"),
+                  Expanded(flex: 2, child: BookServiceType(data: data)),
+                  const SizedBox(height: 16),
+                  Expanded(
+                    child: CustomeInfosServiceItems(
+                      location: data.location,
+                      phone: data.expert!.mobile,
+                      time: formatTime,
+                      timeTapped: true,
+                      locationTapped: true,
+                      phoneTapped: true,
+                    ),
+                  ),
+                  Expanded(flex: 2, child: CustomeBookServiceInfo(data: data)),
+                  CustomButton(
+                    title: 'حذف حجز الخدمة',
+                    width: MediaQuery.of(context).size.width / 2,
+                    onTap: () async {
+                      await BlocProvider.of<BookServiceCubit>(context)
+                          .deleteBookService(id: data.id!);
+                    },
+                    color: Colors.red,
+                  ),
+                ],
               ),
             ),
-            Expanded(flex: 2, child: CustomeBookServiceInfo(data: data)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-              CustomButton(
-                title: 'تعديل الحجز',
-                onTap: (){
-                  Get.to(()=>const UpdateBookServiceView());
-                },
-                width: MediaQuery.of(context).size.width/3,
-              ),
-              CustomButton(
-                title: 'حذف حجز الخدمة',
-                onTap: () {},
-                width: MediaQuery.of(context).size.width/3,
-              ),
-            ],),
-
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

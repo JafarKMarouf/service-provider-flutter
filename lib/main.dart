@@ -10,6 +10,7 @@ import 'package:freelancer_app/features/main/data/repos/service_repo/service_rep
 import 'package:freelancer_app/features/main/presentation/view_models/category_cubit/category_cubit.dart';
 
 import 'package:freelancer_app/features/main/presentation/view_models/service_cubit/service_cubit.dart';
+import 'package:freelancer_app/features/splash/splash_view.dart';
 
 import 'package:get/get.dart';
 import 'package:freelancer_app/core/utils/api_service.dart';
@@ -19,7 +20,6 @@ import 'package:dio/dio.dart';
 
 import 'features/profile/data/repos/profile_repo_impl.dart';
 import 'features/profile/presentation/view_models/profile_cubit/profile_cubit.dart';
-import 'features/splash/splash_view.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();

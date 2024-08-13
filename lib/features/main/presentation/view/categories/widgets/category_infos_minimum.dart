@@ -24,21 +24,25 @@ class CategoryInfosMinimum extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                 imageUrl: '${data.photo}',
-                placeholder: (context, url) => Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
+                placeholder: (context, url) {
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ),
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.error,
-                  color: Colors.white,
-                  size: 45,
-                ),
+                  );
+                },
+                errorWidget: (context, url, error) {
+                  return const Icon(
+                    Icons.error,
+                    color: Colors.white,
+                    size: 45,
+                  );
+                },
               ),
             ),
           ),

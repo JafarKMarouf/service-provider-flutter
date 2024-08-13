@@ -8,15 +8,11 @@ class ConfirmedBookedBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 50,
-        horizontal: 15,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       child: Column(
         children: [
-          const CustomeServiceBar(
-            title: "حالة الطلب",
-          ),
+          const AspectRatio(aspectRatio: 17),
+          const CustomeServiceBar(title: "حالة الطلب"),
           const SizedBox(height: 50),
           // const ConfirmedBooked(),
           const Spacer(),

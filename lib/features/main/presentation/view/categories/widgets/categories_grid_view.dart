@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,19 +23,17 @@ class CategoriesGridView extends StatelessWidget {
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3),
+            crossAxisCount: 3,
+          ),
           padding: const EdgeInsets.only(top: 15, bottom: 10),
           itemCount: data.length,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                // log('====category index id ${data[index].id}');
                 g.Get.to(
                   () => BlocProvider(
                     create: (context) => ServiceCubit(
-                      ServiceRepoImpl(
-                        ApiService(Dio()),
-                      ),
+                      ServiceRepoImpl(ApiService(Dio())),
                     ),
                     child: CategoryItemView(data: data[index]),
                   ),

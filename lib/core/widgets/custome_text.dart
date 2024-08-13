@@ -25,7 +25,7 @@ class CustomeText extends StatelessWidget {
         fontFamily: fontFamily,
       ),
       overflow: TextOverflow.ellipsis,
-      // maxLines: 3,
+      maxLines: 5,
       textDirection: TextDirection.rtl,
     );
   }

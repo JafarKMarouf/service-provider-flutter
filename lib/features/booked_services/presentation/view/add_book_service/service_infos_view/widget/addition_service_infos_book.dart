@@ -10,21 +10,26 @@ class AdditionServiceInfoBook extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(
-          'رسوم الفحص: ${data.expert!.first.price} ل.س',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            fontFamily: 'Poppins SemiBold',
-            color: Color(0xff252525),
-          ),
-          textDirection: TextDirection.rtl,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              'رسوم الفحص: ${data.expert!.first.price} ل.س',
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Poppins SemiBold',
+                color: Color(0xff252525),
+              ),
+              textDirection: TextDirection.rtl,
+            ),
+          ],
         ),
         const SizedBox(height: 8),
         Text(
           'الوصف : ${data.serviceDescription}',
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: FontWeight.w600,
           ),
           textDirection: TextDirection.rtl,

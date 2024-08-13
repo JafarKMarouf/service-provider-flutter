@@ -28,7 +28,15 @@ class FreelancerInfosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bookService = BlocProvider.of<BookServiceCubit>(context);
-
+    int rating = 0;
+    if (freelanceInfos != null) {
+      rating = freelanceInfos!.rating!;
+    } else if (expert != null) {
+      rating = expert!.rating!;
+    } else {
+      rating = 0;
+    }
+    bookService.rating = rating;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
@@ -36,19 +44,18 @@ class FreelancerInfosView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            const AspectRatio(aspectRatio: 17), CustomeServiceBar(
+            const AspectRatio(aspectRatio: 17),
+            CustomeServiceBar(
               title: '${freelanceInfos?.user!.name ?? expert?.user!.name}',
             ),
-
             Expanded(
+              flex: 2,
               child: FreelancerInfos(
                 expert: expert,
                 freelanceInfos: freelanceInfos,
               ),
             ),
-           const Spacer(),
-
+            const Spacer(),
             expert != null
                 ? CustomButton(
                     title: 'تفدم',
@@ -57,8 +64,6 @@ class FreelancerInfosView extends StatelessWidget {
                       Future.delayed(
                         const Duration(microseconds: 250),
                         () {
-                          var location =
-                              '${bookService.currentPosition!.latitude},${bookService.currentPosition!.longitude}';
                           DatumBooked booked = DatumBooked(
                             expertId: bookService.expertId,
                             customerId: bookService.customerId,
@@ -78,8 +83,9 @@ class FreelancerInfosView extends StatelessWidget {
                               price: bookService.price,
                             ),
                             // description: bookService.description!.text,
-                            // location: bookService.currentPosition.toString(),
-                            location: location,
+                            // location: bookService.currentAddress,
+                            location:
+                                '${bookService.currentPosition!.longitude},${bookService.currentPosition!.latitude}',
                           );
                           g.Get.to(
                             () => BookingConfirmationView(booked: booked),

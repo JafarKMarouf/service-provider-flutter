@@ -19,7 +19,7 @@ class CategoryItemView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const AspectRatio(aspectRatio: 7),
+            const AspectRatio(aspectRatio: 12),
             CustomeSearchArrowBackBar(title: data.title!),
             const SizedBox(height: 16),
             Padding(

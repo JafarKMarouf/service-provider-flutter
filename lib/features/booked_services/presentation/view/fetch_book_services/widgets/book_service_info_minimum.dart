@@ -13,6 +13,7 @@ class BookServiceInfosMinimum extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var formatDate = data.deliveryDate;
+
     var formatTime = data.deliveryTime;
 
     return Padding(
@@ -35,13 +36,25 @@ class BookServiceInfosMinimum extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SvgPicture.asset(
-                      AppImages.bookmarksvg,
-                      height: 34,
-                      colorFilter: const ColorFilter.mode(
-                        kPrimaryColor,
-                        BlendMode.srcIn,
-                      ),
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          AppImages.payment,
+                          height: 34,
+                          colorFilter: const ColorFilter.mode(
+                            kPrimaryColor,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        data.status == 'process'
+                            ? const Icon(
+                                Icons.check_rounded,
+                                color: kPrimaryColor,
+                                size: 30,
+                              )
+                            : const SizedBox(),
+                      ],
                     ),
                     const Spacer(),
                     Column(
@@ -91,7 +104,6 @@ class BookServiceInfosMinimum extends StatelessWidget {
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       decoration: BoxDecoration(
@@ -145,7 +157,7 @@ class BookServiceInfosMinimum extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$ ${data.expert!.price}',
+                      '${data.expert!.price} ل.س',
                       style: const TextStyle(
                         fontSize: 14,
                         fontFamily: 'Poppins Medium',

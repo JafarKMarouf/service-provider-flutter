@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freelancer_app/core/utils/constant.dart';
 import 'package:freelancer_app/core/widgets/custome_infos_service_items.dart';
 import 'package:freelancer_app/features/booked_services/presentation/view_models/pick_book_service_infos_cubit/pick_book_service_infos_cubit.dart';
-import 'package:freelancer_app/features/main/data/models/service_model/service_datum.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../view_models/pick_book_service_infos_cubit/pick_book_service_infos_state.dart';
@@ -17,7 +17,7 @@ class ServiceInfosBook extends StatelessWidget {
     return BlocBuilder<PickBookServiceInfosCubit, PickBookServiceInfosState>(
       builder: (context, state) {
         return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             CustomeInfosServiceItems(
               date: cubit.newDate != null
@@ -32,17 +32,27 @@ class ServiceInfosBook extends StatelessWidget {
               onPressedTime: () async => await cubit.pickTime(context),
               timeTapped: cubit.newTime != null ? true : false,
               // =================================
-              location: cubit.currentAddress == null
+              // location: cubit.currentAddress == null
+              //     ? 'تحديد الموقع'
+              //     : cubit.currentAddress.toString(),
+              // locationTapped: cubit.currentAddress != null ? true : false,
+              location: cubit.currentPosition == null
                   ? 'تحديد الموقع'
-                  : cubit.currentAddress.toString(),
-              locationTapped: cubit.currentAddress != null ? true : false,
+                  : cubit.currentPosition.toString(),
+              locationTapped: cubit.currentPosition != null ? true : false,
+
               onPressedLocation: () async {
                 loading = true;
                 await cubit.pickLocation();
                 loading = false;
               },
             ),
-            loading ? const CircularProgressIndicator() : Container(),
+            loading
+                ? const CircularProgressIndicator(
+                    color: Color(0xff0ABA31),
+                    backgroundColor: kPrimaryColor,
+                  )
+                : const SizedBox(),
           ],
         );
       },

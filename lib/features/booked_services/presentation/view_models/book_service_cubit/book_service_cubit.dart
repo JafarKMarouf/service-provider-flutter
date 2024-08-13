@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +20,7 @@ class BookServiceCubit extends Cubit<BookServiceState> {
   int? rating;
   String? deliveryTime;
   String? deliveryDate;
+  String? currentAddress;
   Position? currentPosition;
   TextEditingController? description;
 
@@ -42,19 +42,44 @@ class BookServiceCubit extends Cubit<BookServiceState> {
     );
   }
 
-  Future<void> addBookedServices({
-    required Map<String, dynamic> body,
-  }) async {
-    emit(BookServiceLoading());
+  Future<void> addBookedServices({required Map<String, dynamic> body}) async {
+    emit(BookServiceAddLoading());
 
     var result = await bookServiceRepoImpl.addBookService(body: body);
 
     result.fold(
       (fail) {
-        emit(BookServiceFailure(errMessage: fail.errMessage));
+        emit(BookServiceAddFailure(errMessage: fail.errMessage));
       },
       (booked) {
         emit(BookServiceAddSuccess(bookService: booked));
+      },
+    );
+  }
+
+  Future<void> updateStatusBooked({required int id}) async {
+    emit(BookServiceUpdateStatusLoading());
+
+    var result = await bookServiceRepoImpl.updateStatusBookService(id: id);
+    result.fold(
+      (fail) {
+        emit(BookServiceUpdateStatusFailure(errMessage: fail.errMessage));
+      },
+      (bookService) {
+        emit(BookServiceUpdateStatusSuccess(bookService: bookService));
+      },
+    );
+  }
+
+  Future<void> deleteBookService({required int id}) async {
+    emit(BookServiceDeleteLoading());
+    var result = await bookServiceRepoImpl.deleteBookService(id: id);
+    result.fold(
+      (fail) {
+        emit(BookServiceDeleteFailure(errMessage: fail.errMessage));
+      },
+      (booked) {
+        emit(BookServiceDeleteSuccess(successMessage: booked));
       },
     );
   }

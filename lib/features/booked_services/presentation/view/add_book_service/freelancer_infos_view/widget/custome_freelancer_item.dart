@@ -24,7 +24,7 @@ class CustomeFreelancerItem extends StatelessWidget {
               transition: g.Transition.fadeIn,
               duration: kDurationTransition,
             );
-          } ,
+          },
         );
       },
       child: Padding(
@@ -33,10 +33,10 @@ class CustomeFreelancerItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              flex: 3,
               child: CustomeFreelancerImage(
                 image: '${expert.photo}',
-                height:65 ,
+                height: 75,
+                width: 75,
               ),
             ),
             Column(
@@ -45,12 +45,6 @@ class CustomeFreelancerItem extends StatelessWidget {
                   text: expert.user!.name!,
                   size: 12,
                   weight: FontWeight.w600,
-                ),
-                CustomeText(
-                  text: '\$ ${expert.price}',
-                  size: 14,
-                  weight: FontWeight.w600,
-                  color: Colors.grey.shade700,
                 ),
                 RatingFreelancer(rating: expert.rating!),
               ],

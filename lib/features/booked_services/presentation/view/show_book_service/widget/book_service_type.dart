@@ -63,7 +63,7 @@ class BookServiceType extends StatelessWidget {
               ),
               const SizedBox(height: 8.0),
               Text(
-                '\$ ${data.expert!.price}',
+                '${data.expert!.price} ل.س',
                 style: const TextStyle(
                   fontSize: 16,
                   color: Color(0xff0ABA31),
